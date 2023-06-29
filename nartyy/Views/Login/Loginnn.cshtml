@@ -1,0 +1,192 @@
+﻿@{
+    Layout = (string)ViewData["Layout"];
+}
+
+
+
+
+
+<h2>Wybierz sprzęt do wypożyczenia:</h2>
+<br>
+<br>
+
+@{
+    string jwtToken = ViewBag.Token;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Narty:</h3>
+            <ul>
+                @foreach (var item in ViewBag.Narty)
+                {
+             
+
+                    <li>
+                        <h4>@(item.Nazwa)</h4>
+                        @if (item.Dostepnosc == false)
+                        {
+                            <h4>Niedostepne</h4>
+                            
+                        }
+
+                        <img src="data:image/svg+xml;base64,@(Convert.ToBase64String(item.Zdjecie))" />
+                        <div>
+                        <label for="data-rezerwacji">Data rezerwacji:</label>
+                        <input type="datetime-local" class="data-rezerwacji" />
+                        </div>
+                        <div>
+                        <label for="data-zwrotu">Data zwrotu:</label>
+                        <input type="datetime-local" class="data-zwrotu" />
+                        </div>
+                        <div>
+                            <button type="button" class="zarezerwuj.Btn" onclick="addAuthorizationHeader('@jwtToken', '@Url.Action("Rezerwacja", "Home", new { id = item.IDNarty, typSprzetu = "narty", dataRezerwacji = "" , dataZwrotu = "" ,user = ViewBag.User})'.replace('dataRezerwacji=', 'dataRezerwacji=' + document.querySelectorAll('.data-rezerwacji').value).replace('dataZwrotu=', 'dataZwrotu=' + document.querySelectorAll('.data-zwrotu').value)); document.location.reload(true);">Zarezerwuj</button>
+                        </div>
+                    </li>
+
+                }
+
+
+
+                <script>
+                    var dataRezerwacjiInputs = document.querySelectorAll('.data-rezerwacji');
+                    var dataZwrotuInputs = document.querySelectorAll('.data-zwrotu');
+                    var zarezerwujBtns = document.querySelectorAll('.zarezerwujBtn');
+
+                    for (var i = 0; i < dataRezerwacjiInputs.length; i++) {
+                        dataRezerwacjiInputs[i].addEventListener('input', checkFormValidity);
+                        dataZwrotuInputs[i].addEventListener('input', checkFormValidity);
+                    }
+
+                    function checkFormValidity() {
+                        for (var i = 0; i < dataRezerwacjiInputs.length; i++) {
+                            var dataRezerwacji = dataRezerwacjiInputs[i].value;
+                            var dataZwrotu = dataZwrotuInputs[i].value;
+                            var zarezerwujBtn = zarezerwujBtns[i];
+
+                            if (dataRezerwacji && dataZwrotu) {
+                                zarezerwujBtn.removeAttribute('disabled');
+                            } else {
+                                zarezerwujBtn.setAttribute('disabled', 'disabled');
+                            }
+                        }
+                    }
+
+                    
+                </script>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>BUTY:</h3>
+            <ul>
+                @foreach (var item in ViewBag.Buty)
+                {
+                    <li>
+                        <h4>@(item.Nazwa)</h4>
+                        @if (item.Dostepnosc == false)
+                        {
+                            <h4>Niedostepne</h4>
+                            ;
+                        }
+
+                        <img src="data:image/svg+xml;base64,@(Convert.ToBase64String(item.Zdjecie))" />
+                        <div>
+                            <label for="data-rezerwacjii">Data rezerwacji:</label>
+                            <input type="datetime-local" class="data-rezerwacjii" />
+                        </div>
+                        <div>
+                            <label for="data-zwrotuu">Data rezerwacji:</label>
+                            <input type="datetime-local" class="data-zwrotuu" />
+                        </div>
+                        <div>
+                            <button type="button" class="zarezerwuj.Btn" onclick="addAuthorizationHeader('@jwtToken', '@Url.Action("Rezerwacja", "Home", new { id = item.IDButyNarciarskie, typSprzetu = "buty", dataRezerwacji = "" , dataZwrotu = "" ,user = ViewBag.User})'.replace('dataRezerwacji=', 'dataRezerwacji=' + document.querySelectorAll('.data-rezerwacji').value).replace('dataZwrotu=', 'dataZwrotu=' + document.querySelectorAll('.data-zwrotu').value)); document.location.reload(true);">Zarezerwuj</button>
+                        </div>
+                    </li>
+                }
+
+                <script>
+                    var dataRezerwacjiInputs = document.querySelectorAll('.data-rezerwacjii');
+                    var dataZwrotuInputs = document.querySelectorAll('.data-zwrotuu');
+                    var zarezerwujBtns = document.querySelectorAll('.zarezerwujBtnn');
+
+                    for (var i = 0; i < dataRezerwacjiInputs.length; i++) {
+                        dataRezerwacjiInputs[i].addEventListener('input', checkFormValidity);
+                        dataZwrotuInputs[i].addEventListener('input', checkFormValidity);
+                    }
+
+                    function checkFormValidity() {
+                        for (var i = 0; i < dataRezerwacjiInputs.length; i++) {
+                            var dataRezerwacji = dataRezerwacjiInputs[i].value;
+                            var dataZwrotu = dataZwrotuInputs[i].value;
+                            var zarezerwujBtn = zarezerwujBtns[i];
+
+                            if (dataRezerwacji && dataZwrotu) {
+                                zarezerwujBtn.removeAttribute('disabled');
+                            } else {
+                                zarezerwujBtn.setAttribute('disabled', 'disabled');
+                            }
+                        }
+                    }
+
+
+                </script>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+<h3>TWOJE REZERWACJE</h3>
+
+@{
+    foreach (var item in ViewBag.Lists)
+    {
+        if (item.Sprzet_Narty != null)
+        {
+            foreach (var it in (item.Sprzet_Narty))
+            {
+                <br>
+                <h4>@it.Nazwa</h4>
+                <img src="data:image/svg+xml;base64,@(Convert.ToBase64String(it.Zdjecie))" width="50" height="50" />
+                <button type="button" class="resign_n" onclick="addAuthorizationHeader('@jwtToken', '@Url.Action("Resign", "Home",new {id = item.IDSprzet})');document.location.reload(true);">Rezygnuj</button>
+                <br>
+            }
+        }
+        if (item.Sprzet_Buty != null)
+        {
+            foreach (var it in (item.Sprzet_Buty))
+            {
+                <br>
+                <h4>@it.Nazwa</h4>
+                <img src="data:image/svg+xml;base64,@(Convert.ToBase64String(it.Zdjecie))" width="50" height="50" />
+                <button type="button" class="resign_n" onclick="addAuthorizationHeader('@jwtToken', '@Url.Action("Resign", "Home",new {id = item.IDSprzet})');document.location.reload(true);">Rezygnuj</button>
+
+                <br>
+            }
+        }
+
+    }
+
+
+}
+
+<script>
+    function addAuthorizationHeader(jwtToken, url) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + jwtToken);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        };
+
+        xhr.send();
+    }
+</script>

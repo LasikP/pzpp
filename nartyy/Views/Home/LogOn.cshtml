@@ -1,0 +1,106 @@
+﻿@model UserLogin
+
+@{
+    Layout = (string)ViewData["Layout"];
+}
+
+<script>
+    window.addEventListener('DOMContentLoaded', scrollToLoginForm);
+
+    function scrollToLoginForm() {
+        const loginForm = document.getElementById('loginForm');
+        loginForm.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+<form id="loginForm" method="POST" action="/Login/Loginnn">
+    <div class="form-group">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Hasło:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Zaloguj</button>
+</form>
+
+<br>
+
+<button id="button_dodaj" class="btn btn-primary">Dodaj Użytkownika</button>
+
+<form id="registerForm" method="POST" action="/Login/Register" style="display: none;">
+    <div class="form-group">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" class="form-control" id="registerUsername" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Hasło:</label>
+        <input type="password" class="form-control" id="registerPassword" name="password" required>
+    </div>
+    <br> <!-- Przerwa między przyciskiem a polem "Nazwa użytkownika" -->
+    <div>
+        <label for="name">Imię:</label>
+        <input type="text" class="form-control" id="name" name="imie" required>
+    </div>
+    <div>
+        <label for="surname">Nazwisko:</label>
+        <input type="text" class="form-control" id="surname" name="nazwisko" required>
+    </div>
+    <div>
+        <label for="adres">Adres:</label>
+        <input type="text" class="form-control" id="adres" name="adres" required>
+    </div>
+    <div>
+        <label for="rola">Rola:</label>
+        <input type="text" class="form-control" id="rola" name="rola" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+</form>
+
+<script>
+    const addButton = document.querySelector('#button_dodaj');
+    addButton.addEventListener('click', showForm);
+
+    function showForm() {
+        const form = document.getElementById('registerForm');
+        form.style.display = 'block';
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', validateLoginForm);
+
+    function validateLoginForm(event) {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username.trim() === '' || password.trim() === '') {
+            event.preventDefault();
+            alert('Proszę wprowadzić nazwę użytkownika i hasło.');
+        }
+    }
+
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', validateRegisterForm);
+
+    function validateRegisterForm(event) {
+        const registerUsername = document.getElementById('registerUsername').value;
+        const registerPassword = document.getElementById('registerPassword').value;
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const adres = document.getElementById('adres').value;
+        const rola = document.getElementById('rola').value;
+
+        if (
+            registerUsername.trim() === '' ||
+            registerPassword.trim() === '' ||
+            name.trim() === '' ||
+            surname.trim() === '' ||
+            adres.trim() === '' ||
+            rola.trim() === ''
+        ) {
+            event.preventDefault();
+            alert('Proszę wypełnić wszystkie pola.');
+        }
+    }
+</script>

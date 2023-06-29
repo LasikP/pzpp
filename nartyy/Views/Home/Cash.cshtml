@@ -1,0 +1,77 @@
+﻿@{
+    Layout = (string)ViewData["Layout"];
+}
+
+<div class="container-fluid">
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card card1 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Tygodniowy</strong></h5>
+                        <small class='text-muted'>Okres od 3 do 7 dni</small>
+                        <br><br>
+                        <span class="h2">400zł</span>
+                        <br><br>
+                        <div class="d-grid my-3">
+                            <a href="@Url.Action("LogOn", "Home")" class="btn btn-primary btn-block">Wybierz</a>
+                        </div>
+                        <ul>
+                            <li>Dostępny przez cały tydzień! Idealny na urlop!</li>
+                            <li>Wypożyczasz narty kiedy tylko chcesz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card card2 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Weekendowy</strong></h5>
+                        <small class='text-muted'>Okres 2 dni</small>
+                        <br><br>
+                        <span class="h2">250zł</span>
+                        <br><br>
+                        <div class="d-grid my-3">
+                            <a href="@Url.Action("LogOn", "Home")" class="btn btn-primary btn-block">Wybierz</a>
+                        </div>
+                        <ul>
+                            <li>Ważny tylko przez wybrany weekend</li>
+                            <li>Wypożyczasz narty kiedy tylko chcesz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card card3 h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Sezonowy</strong></h5>
+                        <small class='text-muted'>Cały sezon</small>
+                        <br><br>
+                        <span class="h2">1700zł</span>
+                        <br><br>
+                        <div class="d-grid my-3">
+                            <a href="@Url.Action("LogOn", "Home")" class="btn btn-primary btn-block">Wybierz</a>
+                        </div>
+                        <ul>
+                            <li>Dostępny całą zimę</li>
+                            <li>Wypożyczasz narty kiedy tylko chcesz</li>
+                            <li>Obiad w restauracji GRATIS</li>
+                            <li>Wstęp do Termy GRATIS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', scrollToSection);
+
+    function scrollToSection() {
+        var tygodniowySection = document.querySelector(".card1");
+        if (tygodniowySection) {
+            tygodniowySection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = (string)ViewData["Layout"];
+}
+
+<script>
+    window.addEventListener('DOMContentLoaded', scrollToSection);
+
+    function scrollToSection() {
+        var aboutSection = document.querySelector(".about-section");
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+    <div class="container">
+        <div class="about-section">
+            <h2>O nas</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="animate__animated animate__fadeInLeft">Informacje o naszej firmie</h3>
+                    <p class="animate__animated animate__fadeInLeft">
+                        Jazda na nartach to niezwykła frajda, w którą łatwo się wciągnąć. Jeśli jednak rzadko bywamy na stoku, to zakup sprzętu może okazać się nieopłacalny. Z tego powodu wiele osób decyduje się raczej na wypożyczanie nart.
+
+                        Dlatego, jeśli szukasz wypożyczalni nart z atrakcyjnymi cenami? Z największym wyborem w Małopolsce? Sprawdź nas. Gwarantujemy Ci miłą i fachową obsługę.
+
+                        A może brak Ci czasu? Boisz się kolejek w wypożyczalni pod stokiem? Nie chcesz wybierać tego co zostało, a to co potrzebujesz? Zajrzyj do naszej wypożyczalni gdzie profesjonalni doradcy pomogą Ci wybrać odpowiedni sprzęt dla Ciebie jak i dla Twojej rodziny. Największy wybór nart i akcesoriów narciarskich w Krakowie. Narty w naszej wypożyczalni są zawsze po serwisie i gotowe na akcje na śniegu :)
+
+
+
+                        Dlaczego warto u nas wypożyczać:
+
+                        Wypożyczając u nas sprzęt oszczędzasz swój czas i pieniądze.
+
+                        Mamy największy wybór sprzętu narciarskiego i snowboardowego w Krakowie.
+
+                        Jeździsz na sprzęcie gwarantującym bezpieczeństwo.
+
+                        Mamy w swojej ofercie zawsze najlepsze modele z bieżącego sezonu
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="animate__animated animate__fadeInLeft">Ceny za narty</h3>
+                    <ul class="animate__animated animate__fadeInUp">
+                        <li>Narty dzień - 50 zł</li>
+                        <li>Narty weekend - 100 zł</li>
+                        <li>Narty tydzień - 200 zł</li>
+            @*        <img src="C:\Users\Krzys\Desktop\studia_A\STUDIA\sem_6\proj\Apka_poprawka\aboutusphoto.jpg" alt="Girl in a jacket" width="500" height="600">
+                    <img src="data:image/svg+xml;base64,@(Convert.ToBase64String(item.Zdjecie))" />*@
+                    <img src="@Url.Content("~/img/aboutusphoto.jpg")" width="400" height="350" alt="Obrazek" />
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>

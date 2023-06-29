@@ -1,0 +1,91 @@
+﻿@{
+    Layout = (string)ViewData["Layout"];
+}
+<script>
+    window.addEventListener('DOMContentLoaded', scrollToQuestion);
+
+    function scrollToQuestion() {
+        var questionSection = document.getElementById('question-section');
+        questionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+<div class="container justify-content-center">
+    <div id="question-section">
+        <h1 style="color: black;">Zadaj nam pytanie!</h1>
+    </div>
+    <br />
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div id="map"></div>
+        </div>
+        <br />
+        <div class="col-md-6">
+            <form class="my-form">
+                <div class="form-group">
+                    <label for="form-name">Imie</label>
+                    <input type="text" class="form-control" id="form-name" placeholder="Twoje Imie" required>
+                </div>
+                <div class="form-group">
+                    <label for="form-email">Email</label>
+                    <input type="email" class="form-control" id="form-email" placeholder="Twój Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="form-subject">Telefon</label>
+                    <input type="text" class="form-control" id="form-subject" placeholder="Twój Telefon" required>
+                </div>
+                <div class="form-group">
+                    <label for="form-message">Twoje pytanie</label>
+                    <textarea class="form-control" id="form-message" placeholder="Twoje pytanie" required></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Wyślij</button>
+            </form>
+        </div>
+    </div>
+
+
+<!--
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+    var mapcode;
+    var diag;
+
+    function initialize() {
+        mapcode = new google.maps.Geocoder();
+        var lnt = new google.maps.LatLng(49.754823595393745, 19.475834342056874);
+        var diagChoice = {
+            zoom: 9,
+            center: lnt,
+            diagId: google.maps.MapTypeId.ROADMAP
+        };
+        diag = new google.maps.Map(document.getElementById('map_populate'), diagChoice);
+    }
+
+    function getmap() {
+        var completeaddress = document.getElementById('txt_location').value;
+        mapcode.geocode({ 'address': completeaddress }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                diag.setCenter(results[0].geometry.location);
+                var hint = new google.maps.Marker({
+                    diag: diag,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Location Not Tracked. ' + status);
+            }
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+-->
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <p style="margin-bottom: 10px; font-weight: bold; color: black; font-size: 24px;">Nasza lokalizacja</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41204.17015680425!2d19.000534886231694!3d49.79996752394697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47169fc0a7862b97%3A0xab58f9e2cef89ecf!2sAkademia%20Techniczno-Humanistyczna%20w%20Bielsku-Bia%C5%82ej!5e0!3m2!1spl!2spl!4v1687787225335!5m2!1spl!2spl"
+            width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
+
+    
